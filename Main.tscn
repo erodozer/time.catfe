@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scene/counter.png" type="Texture" id=1]
 [ext_resource path="res://scene/table.png" type="Texture" id=2]
@@ -26,6 +26,10 @@
 [ext_resource path="res://scene/yuuki/sit/02.png" type="Texture" id=24]
 [ext_resource path="res://scene/yuuki/sit/01.png" type="Texture" id=25]
 [ext_resource path="res://scene/yuuki/sit/03.png" type="Texture" id=26]
+[ext_resource path="res://scene/yuuki/sit_chat/03.png" type="Texture" id=27]
+[ext_resource path="res://scene/yuuki/sit_chat/02.png" type="Texture" id=28]
+[ext_resource path="res://scene/yuuki/sit_chat/04.png" type="Texture" id=29]
+[ext_resource path="res://scene/yuuki/sit_chat/01.png" type="Texture" id=30]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -52,6 +56,11 @@ animations = [ {
 "frames": [  ],
 "loop": true,
 "name": "Register",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "SittingChat",
 "speed": 5.0
 } ]
 
@@ -152,8 +161,8 @@ script = ExtResource( 22 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/Yuuki"]
 frames = SubResource( 2 )
-animation = "Sitting"
-frame = 4
+animation = "SittingChat"
+frame = 3
 playing = true
 
 [node name="TableSet" type="Node2D" parent="Cafe/Objects"]
@@ -268,6 +277,12 @@ position = Vector2( 34, 40 )
 
 [node name="Idle" type="Node2D" parent="Cafe/Objects/Anchors"]
 position = Vector2( 0, 32 )
+
+[node name="Chat" type="Node2D" parent="Cafe/Objects/Anchors"]
+position = Vector2( -24, 32 )
+
+[node name="Counter" type="Node2D" parent="Cafe/Objects/Anchors"]
+position = Vector2( -42, 0 )
 
 [node name="Lamps" type="Node2D" parent="Cafe"]
 z_index = 1

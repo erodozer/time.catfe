@@ -1,0 +1,297 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://scene/counter.png" type="Texture" id=1]
+[ext_resource path="res://scene/table.png" type="Texture" id=2]
+[ext_resource path="res://scene/hanging_plant.png" type="Texture" id=3]
+[ext_resource path="res://scene/bg.png" type="Texture" id=4]
+[ext_resource path="res://scene/outside.png" type="Texture" id=5]
+[ext_resource path="res://scene/potted_plant_01.png" type="Texture" id=6]
+[ext_resource path="res://scene/littleBlackPixels.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scene/Clock.gd" type="Script" id=8]
+[ext_resource path="res://scene/yuuki/idle_01/01.png" type="Texture" id=9]
+[ext_resource path="res://scene/chair_left.png" type="Texture" id=10]
+[ext_resource path="res://scene/potted_plant_02.png" type="Texture" id=11]
+[ext_resource path="res://scene/chair_right.png" type="Texture" id=12]
+[ext_resource path="res://scene/lamp.png" type="Texture" id=13]
+[ext_resource path="res://scene/tree.png" type="Texture" id=14]
+[ext_resource path="res://lib/Events.gd" type="Script" id=15]
+[ext_resource path="res://lib/TimeToggle.gd" type="Script" id=16]
+[ext_resource path="res://scene/yuuki/idle_01/02.png" type="Texture" id=17]
+[ext_resource path="res://scene/yuuki/idle_01/03.png" type="Texture" id=18]
+[ext_resource path="res://scene/yuuki/sleep/03.png" type="Texture" id=19]
+[ext_resource path="res://scene/yuuki/sleep/01.png" type="Texture" id=20]
+[ext_resource path="res://scene/yuuki/sleep/02.png" type="Texture" id=21]
+[ext_resource path="res://scene/Yuuki.gd" type="Script" id=22]
+[ext_resource path="res://scene/yuuki/sit/04.png" type="Texture" id=23]
+[ext_resource path="res://scene/yuuki/sit/02.png" type="Texture" id=24]
+[ext_resource path="res://scene/yuuki/sit/01.png" type="Texture" id=25]
+[ext_resource path="res://scene/yuuki/sit/03.png" type="Texture" id=26]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.0901961, 0.12549, 0.219608, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "Sitting",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "Sleeping",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 4.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "Register",
+"speed": 5.0
+} ]
+
+[node name="Scene" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_left = -1.0
+margin_top = 5.0
+margin_right = -7.0
+margin_bottom = 29.0
+mouse_filter = 0
+custom_colors/font_color = Color( 0.921569, 0.929412, 0.913725, 1 )
+custom_colors/font_color_shadow = Color( 0.0901961, 0.12549, 0.219608, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "10:30AM"
+align = 2
+script = ExtResource( 8 )
+
+[node name="Outside" type="Sprite" parent="."]
+position = Vector2( -54, 34 )
+z_index = -1
+texture = ExtResource( 5 )
+
+[node name="Cafe" type="Node2D" parent="."]
+
+[node name="Bg" type="Sprite" parent="Cafe"]
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="Cafe"]
+current = true
+
+[node name="Node2D" type="Node2D" parent="Cafe"]
+
+[node name="Sprite6" type="Sprite" parent="Cafe/Node2D"]
+visible = false
+position = Vector2( 35, -48 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 13 )
+
+[node name="Sprite5" type="Sprite" parent="Cafe/Node2D"]
+position = Vector2( 0, -51 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 13 )
+
+[node name="HangingPlant2" type="Sprite" parent="Cafe/Node2D"]
+position = Vector2( -42, -48 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Objects" type="YSort" parent="Cafe"]
+
+[node name="Counter" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( -60, 10 )
+texture = ExtResource( 1 )
+
+[node name="Tree" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( -6, 28 )
+texture = ExtResource( 14 )
+centered = false
+offset = Vector2( 0, -100 )
+
+[node name="Sprite" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( -27, 64 )
+scale = Vector2( 0.524057, 0.524057 )
+texture = ExtResource( 11 )
+
+[node name="Plant" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( 97, 67 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="Plant2" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( -99, 39 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 6 )
+
+[node name="Plant3" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( -28, 21 )
+scale = Vector2( 0.466667, 0.466667 )
+texture = ExtResource( 6 )
+
+[node name="Plant4" type="Sprite" parent="Cafe/Objects"]
+position = Vector2( 77, 10 )
+scale = Vector2( 0.466667, 0.466667 )
+texture = ExtResource( 6 )
+
+[node name="Yuuki" type="Node2D" parent="Cafe/Objects"]
+position = Vector2( 0, 32 )
+script = ExtResource( 22 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/Yuuki"]
+frames = SubResource( 2 )
+animation = "Sitting"
+frame = 4
+playing = true
+
+[node name="TableSet" type="Node2D" parent="Cafe/Objects"]
+position = Vector2( 39, 24 )
+scale = Vector2( 0.9, 0.9 )
+script = ExtResource( 16 )
+
+[node name="Chair6" type="Sprite" parent="Cafe/Objects/TableSet"]
+position = Vector2( 18, -6 )
+texture = ExtResource( 12 )
+
+[node name="Table3" type="Sprite" parent="Cafe/Objects/TableSet"]
+texture = ExtResource( 2 )
+
+[node name="Chair5" type="Sprite" parent="Cafe/Objects/TableSet"]
+position = Vector2( -19, -6 )
+texture = ExtResource( 10 )
+
+[node name="TableSet2" type="Node2D" parent="Cafe/Objects"]
+position = Vector2( 61, 59 )
+script = ExtResource( 16 )
+
+[node name="Chair4" type="Sprite" parent="Cafe/Objects/TableSet2"]
+position = Vector2( 15, -3 )
+texture = ExtResource( 12 )
+
+[node name="Table2" type="Sprite" parent="Cafe/Objects/TableSet2"]
+texture = ExtResource( 2 )
+
+[node name="Chair3" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["toggle", "toggle:sit"]]
+visible = false
+position = Vector2( -15, 0 )
+texture = ExtResource( 10 )
+
+[node name="TableSet3" type="Node2D" parent="Cafe/Objects"]
+position = Vector2( -60, 59 )
+script = ExtResource( 16 )
+
+[node name="Chair2" type="Sprite" parent="Cafe/Objects/TableSet3"]
+position = Vector2( 18, -5 )
+texture = ExtResource( 12 )
+
+[node name="Table" type="Sprite" parent="Cafe/Objects/TableSet3"]
+texture = ExtResource( 2 )
+
+[node name="Chair" type="Sprite" parent="Cafe/Objects/TableSet3"]
+position = Vector2( -22, -4 )
+texture = ExtResource( 10 )
+
+[node name="TableSet4" type="Node2D" parent="Cafe/Objects"]
+visible = false
+position = Vector2( 39, 24 )
+scale = Vector2( 0.9, 0.9 )
+script = ExtResource( 16 )
+night = true
+
+[node name="Chair6" type="Sprite" parent="Cafe/Objects/TableSet4"]
+position = Vector2( 10, -15 )
+texture = ExtResource( 12 )
+flip_v = true
+
+[node name="Table3" type="Sprite" parent="Cafe/Objects/TableSet4"]
+texture = ExtResource( 2 )
+
+[node name="Chair5" type="Sprite" parent="Cafe/Objects/TableSet4"]
+position = Vector2( -15, -15 )
+texture = ExtResource( 10 )
+flip_v = true
+
+[node name="TableSet5" type="Node2D" parent="Cafe/Objects"]
+visible = false
+position = Vector2( 61, 59 )
+script = ExtResource( 16 )
+night = true
+
+[node name="Chair4" type="Sprite" parent="Cafe/Objects/TableSet5"]
+position = Vector2( 8, -15 )
+texture = ExtResource( 12 )
+flip_v = true
+
+[node name="Table2" type="Sprite" parent="Cafe/Objects/TableSet5"]
+texture = ExtResource( 2 )
+
+[node name="Chair3" type="Sprite" parent="Cafe/Objects/TableSet5"]
+position = Vector2( -6, -15 )
+texture = ExtResource( 10 )
+flip_v = true
+
+[node name="TableSet6" type="Node2D" parent="Cafe/Objects"]
+visible = false
+position = Vector2( -60, 59 )
+script = ExtResource( 16 )
+night = true
+
+[node name="Chair2" type="Sprite" parent="Cafe/Objects/TableSet6"]
+position = Vector2( 13, -15 )
+texture = ExtResource( 12 )
+flip_v = true
+
+[node name="Table" type="Sprite" parent="Cafe/Objects/TableSet6"]
+texture = ExtResource( 2 )
+
+[node name="Chair" type="Sprite" parent="Cafe/Objects/TableSet6"]
+position = Vector2( -6, -15 )
+texture = ExtResource( 10 )
+flip_v = true
+
+[node name="Anchors" type="Node2D" parent="Cafe/Objects"]
+
+[node name="Sitting" type="Node2D" parent="Cafe/Objects/Anchors"]
+position = Vector2( 34, 40 )
+
+[node name="Idle" type="Node2D" parent="Cafe/Objects/Anchors"]
+position = Vector2( 0, 32 )
+
+[node name="Lamps" type="Node2D" parent="Cafe"]
+z_index = 1
+
+[node name="HangingPlant" type="Sprite" parent="Cafe/Lamps"]
+position = Vector2( -84, -60 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="Cafe/Lamps"]
+position = Vector2( -63, -58 )
+texture = ExtResource( 13 )
+
+[node name="Sprite3" type="Sprite" parent="Cafe/Lamps"]
+visible = false
+position = Vector2( 0, -52 )
+texture = ExtResource( 13 )
+
+[node name="Sprite4" type="Sprite" parent="Cafe/Lamps"]
+position = Vector2( 62, -58 )
+texture = ExtResource( 13 )
+
+[node name="Events" type="Node" parent="." groups=["game_clock"]]
+script = ExtResource( 15 )
+force_daytime = true
+
+[connection signal="gui_input" from="CanvasLayer/Label" to="CanvasLayer/Label" method="_on_Label_gui_input"]

@@ -17,6 +17,8 @@ config/icon="res://icon.png"
 [autoload]
 
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+Clock="*res://lib/Events.gd"
+Slots="*res://lib/World.gd"
 
 [display]
 
@@ -28,7 +30,7 @@ window/size/test_width=800
 window/size/test_height=600
 window/dpi/allow_hidpi=true
 window/vsync/use_vsync=false
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [editor_plugins]
@@ -57,6 +59,14 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
+}
+
+[input]
+
+debug={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777244,"unicode":0,"echo":false,"script":null)
+ ]
 }
 
 [physics]

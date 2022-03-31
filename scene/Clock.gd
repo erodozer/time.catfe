@@ -15,7 +15,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(_delta):
-	var dt = OS.get_datetime()
+	var dt = OS.get_datetime_from_unix_time(OS.get_unix_time() + (3600 * Clock.tz))
 	
 	var wkd = WkDay[dt.weekday]
 	var month = Months[dt.month - 1]

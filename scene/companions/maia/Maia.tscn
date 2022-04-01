@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://lib/Actor.gd" type="Script" id=1]
 [ext_resource path="res://scene/companions/maia/idle/02.png" type="Texture" id=2]
 [ext_resource path="res://scene/companions/maia/idle/03.png" type="Texture" id=3]
 [ext_resource path="res://scene/companions/maia/idle/01.png" type="Texture" id=4]
 [ext_resource path="res://lib/Behavior.gd" type="Script" id=5]
+[ext_resource path="res://scene/companions/maia/sitting/01.png" type="Texture" id=6]
+[ext_resource path="res://scene/companions/maia/sitting/02.png" type="Texture" id=7]
+[ext_resource path="res://scene/companions/maia/sitting/03.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -12,50 +15,62 @@ animations = [ {
 "loop": true,
 "name": "Idle",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Sitting",
+"speed": 3.0
 } ]
 
-[node name="Maia" type="Node2D" groups=["cat"]]
+[node name="Maia" type="Node2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -18 )
+position = Vector2( 0, -26 )
 frames = SubResource( 5 )
-animation = "Idle"
-frame = 1
+animation = "Sitting"
+frame = 2
 playing = true
 
-[node name="Controller" type="Node" parent="."]
+[node name="Controller" type="Node" parent="." groups=["actor"]]
 script = ExtResource( 1 )
+guest = true
 
-[node name="Anchors" type="Node2D" parent="Controller"]
-position = Vector2( 26, 47 )
+[node name="Anchors" type="Node" parent="Controller"]
 
 [node name="Sitting" type="Node2D" parent="Controller/Anchors"]
-
-[node name="Playing" type="Node2D" parent="Controller/Anchors"]
-position = Vector2( -42, 10 )
+position = Vector2( 75, 63 )
 
 [node name="Outside" type="Node2D" parent="Controller/Anchors"]
 position = Vector2( 214, -113 )
 
 [node name="Idle" type="Node2D" parent="Controller/Anchors"]
-position = Vector2( -42, 10 )
+position = Vector2( 16, 59 )
 
 [node name="Behaviors" type="Node" parent="Controller"]
 
 [node name="Chat" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 5 )
 anchor = NodePath("../../Anchors/Idle")
-prioritize = true
+prioritize = "yuuki:chat"
+exclusive = true
 
 [node name="Sitting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 5 )
-slot = "table_1"
+slot = "table_2"
+weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
+animation = "Sitting"
+prioritize = "yuuki:sitting"
+toggle_object = [ "table_2_r_chair" ]
 
 [node name="Eating" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 5 )
-slot = "table_1"
+slot = "table_2"
+weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
+animation = "Sitting"
+prioritize = "yuuki:sitting"
+toggle_object = [ "table_2_r_chair" ]
 
 [node name="Outside" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 5 )

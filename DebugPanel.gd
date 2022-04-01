@@ -16,8 +16,12 @@ func _ready():
 	modes.connect("item_selected", Clock, "set_mode")
 	
 	get_node("VBoxContainer/NextAction").connect("pressed", Clock, "next")
+	get_node("VBoxContainer/EjectAction").connect("pressed", self, "eject_guests")
 
 func _input(event):
 	if event.is_action_pressed("debug"):
 		visible = !visible
 	
+func eject_guests():
+	for g in get_tree().get_nodes_in_group("actor"):
+		g.eject_from_shop()

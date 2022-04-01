@@ -83,10 +83,10 @@ animations = [ {
 position = Vector2( 0, -26 )
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 2
+frame = 3
 playing = true
 
-[node name="Controller" type="Node" parent="."]
+[node name="Controller" type="Node" parent="." groups=["actor"]]
 script = ExtResource( 1 )
 
 [node name="Anchors" type="Node" parent="Controller"]
@@ -112,6 +112,10 @@ position = Vector2( -66, 26 )
 [node name="Playing" type="Node2D" parent="Controller/Anchors"]
 position = Vector2( 18, 57 )
 
+[node name="Sitting2" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( -40, 62 )
+scale = Vector2( -1, 1 )
+
 [node name="Behaviors" type="Node" parent="Controller"]
 
 [node name="Idle" type="Node" parent="Controller/Behaviors"]
@@ -122,15 +126,16 @@ anchor = NodePath("../../Anchors/Idle")
 [node name="Sitting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 28 )
 slot = "table_2"
-weight = 1.5
 anchor = NodePath("../../Anchors/Sitting")
 animation = "Sitting"
+toggle_object = [ "table_2_l_chair" ]
 
 [node name="TableChat" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 28 )
 slot = "table_2"
 anchor = NodePath("../../Anchors/Sitting")
 animation = "SittingChat"
+toggle_object = [ "table_2_l_chair" ]
 
 [node name="Chat" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 28 )
@@ -143,9 +148,8 @@ anchor = NodePath("../../Anchors/Counter")
 
 [node name="Play" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 28 )
-weight = 1.5
 anchor = NodePath("../../Anchors/Playing")
-animation = "Playing"
+animation = "Play"
 
 [node name="Karaoke" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 28 )
@@ -178,3 +182,10 @@ weight = 2.0
 anchor = NodePath("../../Anchors/Idle")
 animation = "Sleeping_02"
 night = true
+
+[node name="Sitting2" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 28 )
+slot = "table_1"
+anchor = NodePath("../../Anchors/Sitting2")
+animation = "Sitting"
+toggle_object = [ "table_1_r_chair" ]

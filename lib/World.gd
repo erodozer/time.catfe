@@ -7,15 +7,15 @@ var capacity = 4
 
 var locations = {
 	"center": {
-		"capacity": 2,
+		"capacity": 3,
 		"balance": 0,
 	},
 	"table_1": {
-		"capacity": 2,
+		"capacity": 3,
 		"balance": 0,
 	},
 	"table_2": {
-		"capacity": 2,
+		"capacity": 3,
 		"balance": 0,
 	},
 	"kitchen": {
@@ -29,5 +29,9 @@ var locations = {
 	"catbed": {
 		"capacity": 1,
 		"balance": 0,
-	}
+	},
 }
+
+func reset():
+	for l in locations.values():
+		l.balance = 0

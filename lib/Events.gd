@@ -11,6 +11,8 @@ var next_update = 0
 signal update(time, night)
 
 func next():
+	Slots.reset()
+	
 	var dt = OS.get_datetime(true)
 	
 	dt.minute = dt.minute - (dt.minute % 15)

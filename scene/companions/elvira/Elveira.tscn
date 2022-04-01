@@ -12,24 +12,25 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Elveira" type="Node2D" groups=["cat"]]
+[node name="Elveira" type="Node2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -27 )
+position = Vector2( 0, -26 )
 frames = SubResource( 6 )
 animation = "Idle"
 playing = true
 
-[node name="Controller" type="Node" parent="."]
+[node name="Controller" type="Node" parent="." groups=["actor"]]
 script = ExtResource( 1 )
+guest = true
 
 [node name="Anchors" type="Node" parent="Controller"]
 
-[node name="Sitting" type="Node2D" parent="Controller/Anchors"]
-position = Vector2( 70, 22 )
-
 [node name="Idle" type="Node2D" parent="Controller/Anchors"]
-position = Vector2( -36, 31 )
+position = Vector2( 16, 59 )
+
+[node name="Sitting" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( 75, 63 )
 
 [node name="Outside" type="Node2D" parent="Controller/Anchors"]
 position = Vector2( 214, -113 )
@@ -39,16 +40,19 @@ position = Vector2( 214, -113 )
 [node name="Chat" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 anchor = NodePath("../../Anchors/Idle")
-prioritize = true
+prioritize = "yuuki:chat"
+exclusive = true
 
 [node name="Sitting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
-slot = "table_1"
+slot = "table_2"
+weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
 
 [node name="Eating" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
-slot = "table_1"
+slot = "table_2"
+weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
 
 [node name="Outside" type="Node" parent="Controller/Behaviors"]

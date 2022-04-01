@@ -183,7 +183,6 @@ align = 2
 script = ExtResource( 8 )
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-visible = false
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 110.0
@@ -195,7 +194,7 @@ script = ExtResource( 52 )
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 102.0
-margin_bottom = 84.0
+margin_bottom = 92.0
 
 [node name="TimeZone" type="SpinBox" parent="CanvasLayer/PanelContainer/VBoxContainer"]
 margin_right = 100.0
@@ -219,6 +218,14 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Next"
 
+[node name="EjectAction" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 100.0
+margin_bottom = 90.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Eject Guests"
+
 [node name="Outside" type="Sprite" parent="."]
 position = Vector2( -54, 34 )
 z_index = -1
@@ -233,25 +240,27 @@ texture = ExtResource( 4 )
 [node name="Camera2D" type="Camera2D" parent="Cafe"]
 current = true
 
-[node name="Node2D" type="Node2D" parent="Cafe"]
+[node name="Celing Decor" type="Node2D" parent="Cafe"]
 
-[node name="Sprite6" type="Sprite" parent="Cafe/Node2D"]
+[node name="Sprite6" type="Sprite" parent="Cafe/Celing Decor"]
 visible = false
 position = Vector2( 35, -48 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 13 )
 
-[node name="Sprite5" type="Sprite" parent="Cafe/Node2D"]
+[node name="Sprite5" type="Sprite" parent="Cafe/Celing Decor"]
 position = Vector2( 0, -51 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 13 )
 
-[node name="HangingPlant2" type="Sprite" parent="Cafe/Node2D"]
+[node name="HangingPlant2" type="Sprite" parent="Cafe/Celing Decor"]
 position = Vector2( -42, -48 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="Objects" type="YSort" parent="Cafe"]
+
+[node name="Yuuki" parent="Cafe/Objects" instance=ExtResource( 17 )]
 
 [node name="BlackCat" parent="Cafe/Objects" instance=ExtResource( 18 )]
 
@@ -260,8 +269,6 @@ texture = ExtResource( 3 )
 [node name="Elveira" parent="Cafe/Objects" instance=ExtResource( 9 )]
 
 [node name="Chie" parent="Cafe/Objects" instance=ExtResource( 51 )]
-
-[node name="Yuuki" parent="Cafe/Objects" instance=ExtResource( 17 )]
 
 [node name="Counter" type="Sprite" parent="Cafe/Objects"]
 position = Vector2( -60, 33 )
@@ -323,7 +330,7 @@ script = ExtResource( 16 )
 [node name="TableSet2" type="Node2D" parent="Cafe/Objects"]
 position = Vector2( 59, 69 )
 
-[node name="Chair4" type="Sprite" parent="Cafe/Objects/TableSet2"]
+[node name="Chair4" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["table_2_r_chair"]]
 position = Vector2( 16, -11 )
 texture = ExtResource( 12 )
 
@@ -332,7 +339,7 @@ position = Vector2( 0, -2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -10 )
 
-[node name="Chair3" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["toggle", "toggle:sit"]]
+[node name="Chair3" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["table_2_l_chair"]]
 position = Vector2( -15, -11 )
 texture = ExtResource( 10 )
 
@@ -342,7 +349,7 @@ script = ExtResource( 16 )
 [node name="TableSet3" type="Node2D" parent="Cafe/Objects"]
 position = Vector2( -57, 66 )
 
-[node name="Chair2" type="Sprite" parent="Cafe/Objects/TableSet3"]
+[node name="Chair2" type="Sprite" parent="Cafe/Objects/TableSet3" groups=["table_1_r_chair"]]
 position = Vector2( 8, -11 )
 texture = ExtResource( 12 )
 
@@ -350,7 +357,7 @@ texture = ExtResource( 12 )
 position = Vector2( 0, -10 )
 texture = ExtResource( 2 )
 
-[node name="Chair" type="Sprite" parent="Cafe/Objects/TableSet3"]
+[node name="Chair" type="Sprite" parent="Cafe/Objects/TableSet3" groups=["table_1_l_chair"]]
 position = Vector2( -12, -8 )
 texture = ExtResource( 10 )
 

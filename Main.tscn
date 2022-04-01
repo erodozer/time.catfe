@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scene/counter.png" type="Texture" id=1]
 [ext_resource path="res://scene/table.png" type="Texture" id=2]
@@ -8,49 +8,19 @@
 [ext_resource path="res://scene/potted_plant_01.png" type="Texture" id=6]
 [ext_resource path="res://scene/littleBlackPixels.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://scene/Clock.gd" type="Script" id=8]
-[ext_resource path="res://scene/yuuki/idle_01/01.png" type="Texture" id=9]
+[ext_resource path="res://scene/companions/elvira/Elveira.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scene/chair_left.png" type="Texture" id=10]
 [ext_resource path="res://scene/potted_plant_02.png" type="Texture" id=11]
 [ext_resource path="res://scene/chair_right.png" type="Texture" id=12]
 [ext_resource path="res://scene/lamp.png" type="Texture" id=13]
 [ext_resource path="res://scene/tree.png" type="Texture" id=14]
-[ext_resource path="res://scene/AI/Companion.gd" type="Script" id=15]
+[ext_resource path="res://scene/companions/maia/Maia.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scene/ChairsUp.gd" type="Script" id=16]
-[ext_resource path="res://scene/yuuki/idle_01/02.png" type="Texture" id=17]
-[ext_resource path="res://scene/yuuki/idle_01/03.png" type="Texture" id=18]
-[ext_resource path="res://scene/yuuki/sleep/03.png" type="Texture" id=19]
-[ext_resource path="res://scene/yuuki/sleep/01.png" type="Texture" id=20]
-[ext_resource path="res://scene/yuuki/sleep/02.png" type="Texture" id=21]
-[ext_resource path="res://scene/AI/Yuuki.gd" type="Script" id=22]
-[ext_resource path="res://scene/yuuki/sit/04.png" type="Texture" id=23]
-[ext_resource path="res://scene/yuuki/sit/02.png" type="Texture" id=24]
-[ext_resource path="res://scene/yuuki/sit/01.png" type="Texture" id=25]
-[ext_resource path="res://scene/yuuki/sit/03.png" type="Texture" id=26]
-[ext_resource path="res://scene/yuuki/sit_chat/03.png" type="Texture" id=27]
-[ext_resource path="res://scene/yuuki/sit_chat/02.png" type="Texture" id=28]
-[ext_resource path="res://scene/yuuki/sit_chat/04.png" type="Texture" id=29]
-[ext_resource path="res://scene/yuuki/sit_chat/01.png" type="Texture" id=30]
-[ext_resource path="res://scene/yuuki/sleep_02/03.png" type="Texture" id=31]
-[ext_resource path="res://scene/yuuki/sleep_02/01.png" type="Texture" id=32]
-[ext_resource path="res://scene/yuuki/sleep_02/02.png" type="Texture" id=33]
-[ext_resource path="res://scene/yuuki/play/01.png" type="Texture" id=34]
-[ext_resource path="res://scene/yuuki/play/02.png" type="Texture" id=35]
-[ext_resource path="res://scene/yuuki/play/03.png" type="Texture" id=36]
-[ext_resource path="res://scene/yuuki/sing/03.png" type="Texture" id=37]
-[ext_resource path="res://scene/yuuki/sing/01.png" type="Texture" id=38]
-[ext_resource path="res://scene/yuuki/sing/02.png" type="Texture" id=39]
+[ext_resource path="res://scene/yuuki/Yuuki.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scene/cats/black/BlackCat.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scene/catbed_01.png" type="Texture" id=40]
-[ext_resource path="res://scene/yuuki/kitchen/01.png" type="Texture" id=41]
-[ext_resource path="res://scene/yuuki/kitchen/02.png" type="Texture" id=42]
-[ext_resource path="res://scene/yuuki/kitchen/03.png" type="Texture" id=43]
-[ext_resource path="res://scene/companions/maia/idle/01.png" type="Texture" id=44]
 [ext_resource path="res://Main.gd" type="Script" id=45]
-[ext_resource path="res://scene/companions/maia/idle/02.png" type="Texture" id=46]
-[ext_resource path="res://scene/AI/Cat.gd" type="Script" id=47]
-[ext_resource path="res://scene/cats/black/01.png" type="Texture" id=48]
-[ext_resource path="res://scene/companions/maia/idle/03.png" type="Texture" id=49]
-[ext_resource path="res://scene/companions/elvira/idle/01.png" type="Texture" id=50]
-[ext_resource path="res://scene/companions/chie/idle/01.png" type="Texture" id=51]
+[ext_resource path="res://scene/companions/chie/Chie.tscn" type="PackedScene" id=51]
 [ext_resource path="res://DebugPanel.gd" type="Script" id=52]
 
 [sub_resource type="DynamicFont" id=1]
@@ -189,86 +159,6 @@ Panel/styles/panel = SubResource( 8 )
 PanelContainer/styles/panel = SubResource( 8 )
 SpinBox/icons/updown = null
 
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "Sit",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 44 ), ExtResource( 46 ), ExtResource( 44 ), ExtResource( 49 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 3.0
-} ]
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 50 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=7]
-animations = [ {
-"frames": [ ExtResource( 51 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 38 ), ExtResource( 39 ), ExtResource( 38 ), ExtResource( 37 ) ],
-"loop": true,
-"name": "Singing",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 41 ) ],
-"loop": true,
-"name": "Kitchen",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 32 ), ExtResource( 33 ), ExtResource( 31 ), ExtResource( 33 ) ],
-"loop": true,
-"name": "Sleeping_02",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 25 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "Sitting",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "Register",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "Sleeping",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 30 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "SittingChat",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 34 ), ExtResource( 34 ), ExtResource( 34 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 35 ) ],
-"loop": true,
-"name": "Play",
-"speed": 5.0
-} ]
-
 [node name="Scene" type="Node"]
 script = ExtResource( 45 )
 
@@ -293,6 +183,7 @@ align = 2
 script = ExtResource( 8 )
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 110.0
@@ -362,86 +253,15 @@ texture = ExtResource( 3 )
 
 [node name="Objects" type="YSort" parent="Cafe"]
 
-[node name="BlackCat" type="Node2D" parent="Cafe/Objects" groups=["cat"]]
-position = Vector2( -80, 34 )
+[node name="BlackCat" parent="Cafe/Objects" instance=ExtResource( 18 )]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/BlackCat"]
-position = Vector2( 0, -18 )
-frames = SubResource( 4 )
-animation = "Sit"
-playing = true
+[node name="Maia" parent="Cafe/Objects" instance=ExtResource( 15 )]
 
-[node name="Controller" type="Node" parent="Cafe/Objects/BlackCat"]
-script = ExtResource( 47 )
+[node name="Elveira" parent="Cafe/Objects" instance=ExtResource( 9 )]
 
-[node name="Anchors" type="Node2D" parent="Cafe/Objects/BlackCat/Controller"]
-position = Vector2( 26, 47 )
+[node name="Chie" parent="Cafe/Objects" instance=ExtResource( 51 )]
 
-[node name="Sitting" type="Node2D" parent="Cafe/Objects/BlackCat/Controller/Anchors"]
-
-[node name="Playing" type="Node2D" parent="Cafe/Objects/BlackCat/Controller/Anchors"]
-position = Vector2( -42, 10 )
-
-[node name="Maia" type="Node2D" parent="Cafe/Objects" groups=["cat"]]
-position = Vector2( 26, 51 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/Maia"]
-position = Vector2( 0, -18 )
-frames = SubResource( 5 )
-animation = "Idle"
-frame = 2
-playing = true
-
-[node name="Controller" type="Node" parent="Cafe/Objects/Maia"]
-script = ExtResource( 15 )
-
-[node name="Anchors" type="Node2D" parent="Cafe/Objects/Maia/Controller"]
-position = Vector2( 26, 47 )
-
-[node name="Sitting" type="Node2D" parent="Cafe/Objects/Maia/Controller/Anchors"]
-
-[node name="Playing" type="Node2D" parent="Cafe/Objects/Maia/Controller/Anchors"]
-position = Vector2( -42, 10 )
-
-[node name="Elveira" type="Node2D" parent="Cafe/Objects" groups=["cat"]]
-position = Vector2( 76, 70 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/Elveira"]
-position = Vector2( 0, -27 )
-frames = SubResource( 6 )
-animation = "Idle"
-playing = true
-
-[node name="Controller" type="Node" parent="Cafe/Objects/Elveira"]
-script = ExtResource( 15 )
-
-[node name="Anchors" type="Node2D" parent="Cafe/Objects/Elveira/Controller"]
-position = Vector2( 26, 47 )
-
-[node name="Sitting" type="Node2D" parent="Cafe/Objects/Elveira/Controller/Anchors"]
-
-[node name="Playing" type="Node2D" parent="Cafe/Objects/Elveira/Controller/Anchors"]
-position = Vector2( -42, 10 )
-
-[node name="Chie" type="Node2D" parent="Cafe/Objects" groups=["cat"]]
-position = Vector2( -61, 67 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/Chie"]
-position = Vector2( 0, -26 )
-frames = SubResource( 7 )
-animation = "Idle"
-playing = true
-
-[node name="Controller" type="Node" parent="Cafe/Objects/Chie"]
-script = ExtResource( 15 )
-
-[node name="Anchors" type="Node2D" parent="Cafe/Objects/Chie/Controller"]
-position = Vector2( 26, 47 )
-
-[node name="Sitting" type="Node2D" parent="Cafe/Objects/Chie/Controller/Anchors"]
-
-[node name="Playing" type="Node2D" parent="Cafe/Objects/Chie/Controller/Anchors"]
-position = Vector2( -42, 10 )
+[node name="Yuuki" parent="Cafe/Objects" instance=ExtResource( 17 )]
 
 [node name="Counter" type="Sprite" parent="Cafe/Objects"]
 position = Vector2( -60, 33 )
@@ -481,42 +301,6 @@ offset = Vector2( 0, -20 )
 position = Vector2( 77, 10 )
 scale = Vector2( 0.466667, 0.466667 )
 texture = ExtResource( 6 )
-
-[node name="Yuuki" type="Node2D" parent="Cafe/Objects" groups=["yuuki"]]
-position = Vector2( -1, 61 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Cafe/Objects/Yuuki"]
-position = Vector2( 0, -26 )
-frames = SubResource( 2 )
-animation = "Kitchen"
-frame = 2
-playing = true
-
-[node name="Controller" type="Node" parent="Cafe/Objects/Yuuki"]
-script = ExtResource( 22 )
-
-[node name="Anchors" type="Node2D" parent="Cafe/Objects/Yuuki/Controller"]
-
-[node name="Sitting" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( 33, 66 )
-
-[node name="Idle" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( 0, 59 )
-
-[node name="Chat" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( -25, 59 )
-
-[node name="Counter" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( -42, 29 )
-
-[node name="Kitchen" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( -10, 29 )
-
-[node name="Coffee" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( -66, 26 )
-
-[node name="Playing" type="Node2D" parent="Cafe/Objects/Yuuki/Controller/Anchors"]
-position = Vector2( 18, 57 )
 
 [node name="TableSet" type="Node2D" parent="Cafe/Objects"]
 position = Vector2( 39, 24 )

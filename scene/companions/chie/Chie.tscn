@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://lib/Behavior.gd" type="Script" id=1]
+[ext_resource path="res://scene/companions/chie/idle/01.png" type="Texture" id=2]
+[ext_resource path="res://lib/Actor.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[node name="Chie" type="Node2D" groups=["cat"]]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -26 )
+frames = SubResource( 7 )
+animation = "Idle"
+playing = true
+
+[node name="Controller" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Anchors" type="Node" parent="Controller"]
+
+[node name="Sitting" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( 70, 22 )
+
+[node name="Idle" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( -36, 31 )
+
+[node name="Outside" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( 214, -113 )
+
+[node name="Behaviors" type="Node" parent="Controller"]
+
+[node name="Chat" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 1 )
+anchor = NodePath("../../Anchors/Idle")
+prioritize = true
+
+[node name="Sitting" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 1 )
+slot = "table_1"
+anchor = NodePath("../../Anchors/Sitting")
+prioritize = true
+
+[node name="Eating" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 1 )
+slot = "table_1"
+anchor = NodePath("../../Anchors/Sitting")
+
+[node name="Outside" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 1 )
+slot = "outside"
+anchor = NodePath("../../Anchors/Outside")
+night = true
+inside = false
+
+[node name="Waiting" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 1 )
+slot = "outside"
+anchor = NodePath("../../Anchors/Outside")
+inside = false

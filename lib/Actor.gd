@@ -46,6 +46,10 @@ func set_action(action: Behavior, time):
 			var toggled = get_tree().get_nodes_in_group(obj)
 			for t in toggled:
 				t.visible = true
+		for obj in prev.toggle_on:
+			var toggled = get_tree().get_nodes_in_group(obj)
+			for t in toggled:
+				t.visible = false
 		remove_from_group("%s:%s" % [container.name.to_lower(), prev.name.to_lower()])
 			
 	container.global_position = action.node.global_position
@@ -58,6 +62,11 @@ func set_action(action: Behavior, time):
 		var toggled = get_tree().get_nodes_in_group(obj)
 		for t in toggled:
 			t.visible = false
+			
+	for obj in action.toggle_on:
+		var toggled = get_tree().get_nodes_in_group(obj)
+		for t in toggled:
+			t.visible = true
 	
 	if not prev or not prev.inside:
 		if action.inside:
@@ -83,13 +92,13 @@ func eject_from_shop():
 			set_action(b, 0)
 			return
 		
-func _on_update(time, night):
+func _on_update(time, period, cafe_open):
 	if not container.visible:
 		return
 	
 	if guest:
 		# guests can not be in the shop after it closes
-		if night:
+		if not cafe_open:
 			eject_from_shop()
 			return
 		
@@ -115,7 +124,7 @@ func _on_update(time, night):
 		if a:
 			# only allow picking actions for the current
 			# time period
-			if a.night != night:
+			if period & a.active_time == 0:
 				a = null
 				continue
 				
@@ -129,6 +138,8 @@ func _on_update(time, night):
 			if a.exclusive:
 				a = null
 				continue
+				
+				
 			
 		attempt += 1
 		

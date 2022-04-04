@@ -47,6 +47,7 @@ scale = Vector2( -1, 1 )
 script = ExtResource( 1 )
 anchor = NodePath("../../Anchors/Idle")
 prioritize = "yuuki:chat"
+active_time = 6
 exclusive = true
 
 [node name="Sitting" type="Node" parent="Controller/Behaviors"]
@@ -56,6 +57,7 @@ weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
 animation = "Sitting"
 prioritize = "yuuki:sitting2"
+active_time = 6
 toggle_object = [ "table_1_l_chair" ]
 
 [node name="Eating" type="Node" parent="Controller/Behaviors"]
@@ -65,17 +67,12 @@ weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
 animation = "Sitting"
 prioritize = "yuuki:sitting2"
+active_time = 6
 toggle_object = [ "table_1_l_chair" ]
-
-[node name="Outside" type="Node" parent="Controller/Behaviors"]
-script = ExtResource( 1 )
-slot = "outside"
-anchor = NodePath("../../Anchors/Outside")
-night = true
-inside = false
 
 [node name="Waiting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 1 )
 slot = "outside"
 anchor = NodePath("../../Anchors/Outside")
+active_time = 15
 inside = false

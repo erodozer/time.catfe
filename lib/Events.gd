@@ -1,5 +1,12 @@
 extends Node
 
+enum Period {
+	DAWN = 0b0001,
+	DAY = 0b0010,
+	DUSK = 0b0100,
+	NIGHT = 0b1000,
+}
+
 const godash = preload("res://addons/godash/godash.gd")
 
 export(int) var update_rate = 900
@@ -8,7 +15,7 @@ var mode = 0
 
 var next_update = 0
 
-signal update(time, night)
+signal update(hour, period, cafe_open)
 
 func next():
 	Slots.reset()
@@ -24,9 +31,32 @@ func next():
 	dt = OS.get_datetime(false) # daytime/nighttime will match the rendered clock
 	
 	# toggle day and night elements
-	var is_nighttime = dt.hour < 6 or dt.hour > 21
+	var period
+	var hour = dt.hour
 	
-	emit_signal("update", now, (is_nighttime or mode == 2) and !(mode == 1))
+	if mode == 0:
+		if dt.hour < 5:
+			period = Period.NIGHT
+		elif dt.hour < 7:
+			period = Period.DAWN
+		elif dt.hour < 18:
+			period = Period.DAY
+		elif dt.hour < 20:
+			period = Period.DUSK
+		else:
+			period = Period.NIGHT
+	elif mode == 1:
+		period = Period.DAWN
+	elif mode == 2:
+		period = Period.DAY
+	elif mode == 3:
+		period = Period.DUSK
+	else:
+		period = Period.NIGHT
+		
+	var cafe_open = dt.hour >= 9 and dt.hour < 19
+	
+	emit_signal("update", hour, period, cafe_open)
 	
 func _process(_delta):
 	var now = OS.get_unix_time()
@@ -35,6 +65,7 @@ func _process(_delta):
 
 func set_mode(m):
 	self.mode = m
+	next()
 	
 func set_tz(t):
 	self.tz = t

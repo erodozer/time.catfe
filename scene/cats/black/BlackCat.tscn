@@ -40,18 +40,21 @@ position = Vector2( -106, -13 )
 script = ExtResource( 3 )
 weight = 0.0
 anchor = NodePath("../../Anchors/Catbed")
+active_time = 15
 
 [node name="Playing" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 anchor = NodePath("../../Anchors/Playing")
 prioritize = "yuuki:play"
+active_time = 7
 exclusive = true
 
 [node name="Sitting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 anchor = NodePath("../../Anchors/Sitting")
+active_time = 7
 
 [node name="Sleeping" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 anchor = NodePath("../../Anchors/Catbed")
-night = true
+active_time = 15

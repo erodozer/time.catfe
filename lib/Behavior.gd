@@ -5,10 +5,11 @@ export(float, 0.0, 3.0) var weight = 1.0
 export(NodePath) var anchor
 export(String) var animation = "Idle"
 export(String) var prioritize = ""
-export(bool) var night = false
+export(Clock.Period, FLAGS) var active_time = Clock.Period.DAY
 export(bool) var inside = true
 export(bool) var exclusive = false # can only occur on paired prioritization
 export(Array, String) var toggle_object = []
+export(Array, String) var toggle_on = []
 	
 var node setget ,_get_node
 

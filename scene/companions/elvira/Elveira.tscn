@@ -41,6 +41,7 @@ position = Vector2( 214, -113 )
 script = ExtResource( 3 )
 anchor = NodePath("../../Anchors/Idle")
 prioritize = "yuuki:chat"
+active_time = 7
 exclusive = true
 
 [node name="Sitting" type="Node" parent="Controller/Behaviors"]
@@ -48,22 +49,18 @@ script = ExtResource( 3 )
 slot = "table_2"
 weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
+active_time = 7
 
 [node name="Eating" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 slot = "table_2"
 weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
-
-[node name="Outside" type="Node" parent="Controller/Behaviors"]
-script = ExtResource( 3 )
-slot = "outside"
-anchor = NodePath("../../Anchors/Outside")
-night = true
-inside = false
+active_time = 7
 
 [node name="Waiting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 slot = "outside"
 anchor = NodePath("../../Anchors/Outside")
+active_time = 15
 inside = false

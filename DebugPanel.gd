@@ -10,7 +10,9 @@ func _ready():
 
 	var modes = get_node("VBoxContainer/TimeMode")
 	modes.add_item("Auto")
+	modes.add_item("Dawn")
 	modes.add_item("Day")
+	modes.add_item("Dusk")
 	modes.add_item("Night")
 	modes.select(0)
 	modes.connect("item_selected", Clock, "set_mode")

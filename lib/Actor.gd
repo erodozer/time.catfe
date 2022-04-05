@@ -28,8 +28,17 @@ func prioritize_action():
 			return b
 	return null
 
-func pick_action():
-	var a = godash.rand_choice(behaviors) as Behavior
+func pick_action(period):
+	# only allow picking actions for the current time period
+	var actions = []
+	for b in behaviors:
+		if b.active_time & period > 0:
+			actions.append(b)
+	
+	if len(actions) == 0:
+		return false
+	
+	var a = godash.rand_choice(actions) as Behavior
 	
 	var slot = Slots.locations[a.slot]
 	if slot.balance + a.weight > slot.capacity:
@@ -120,14 +129,8 @@ func _on_update(time, period, cafe_open):
 	var a = prioritize_action()
 	var attempt = 0
 	while not a and (attempt < 3 or current == null):
-		a = pick_action()
+		a = pick_action(period)
 		if a:
-			# only allow picking actions for the current
-			# time period
-			if period & a.active_time == 0:
-				a = null
-				continue
-				
 			# do not allow exiting the shop early
 			if actions > 0 and not a.inside:
 				a = null
@@ -138,8 +141,6 @@ func _on_update(time, period, cafe_open):
 			if a.exclusive:
 				a = null
 				continue
-				
-				
 			
 		attempt += 1
 		

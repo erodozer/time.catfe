@@ -28,11 +28,12 @@ func next():
 	var now = OS.get_unix_time_from_datetime(dt)
 	next_update = now + update_rate
 	
-	dt = OS.get_datetime(false) # daytime/nighttime will match the rendered clock
+	dt = OS.get_datetime_from_unix_time(OS.get_unix_time() + (3600 * Clock.tz)) # daytime/nighttime will match the rendered clock
 	
 	# toggle day and night elements
 	var period
 	var hour = dt.hour
+	
 	
 	if mode == 0:
 		if dt.hour < 5:

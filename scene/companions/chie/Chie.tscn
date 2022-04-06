@@ -41,6 +41,10 @@ position = Vector2( 302, -127 )
 position = Vector2( 16, 59 )
 scale = Vector2( -1, 1 )
 
+[node name="Counter" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( -20, 36 )
+scale = Vector2( -1, 1 )
+
 [node name="Behaviors" type="Node" parent="Controller"]
 
 [node name="Chat" type="Node" parent="Controller/Behaviors"]
@@ -73,6 +77,13 @@ toggle_object = [ "table_1_l_chair" ]
 [node name="Waiting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 1 )
 slot = "outside"
+weight = 0.0
 anchor = NodePath("../../Anchors/Outside")
 active_time = 15
 inside = false
+
+[node name="Ordering" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 1 )
+slot = "kitchen"
+anchor = NodePath("../../Anchors/Counter")
+active_time = 7

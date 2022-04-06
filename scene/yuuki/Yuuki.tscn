@@ -83,7 +83,6 @@ animations = [ {
 position = Vector2( 0, -26 )
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 3
 playing = true
 
 [node name="Controller" type="Node" parent="." groups=["actor"]]
@@ -104,7 +103,7 @@ position = Vector2( -25, 59 )
 position = Vector2( -42, 29 )
 
 [node name="Kitchen" type="Node2D" parent="Controller/Anchors"]
-position = Vector2( -10, 29 )
+position = Vector2( -10, 26 )
 
 [node name="Coffee" type="Node2D" parent="Controller/Anchors"]
 position = Vector2( -66, 26 )
@@ -167,6 +166,7 @@ active_time = 6
 [node name="Baking" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 28 )
 slot = "kitchen"
+weight = 2.0
 anchor = NodePath("../../Anchors/Kitchen")
 animation = "Kitchen"
 active_time = 3

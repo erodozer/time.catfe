@@ -11,7 +11,6 @@ const godash = preload("res://addons/godash/godash.gd")
 
 export(int) var update_rate = 900
 var tz = OS.get_time_zone_info().bias / 60
-var mode = 0
 
 var next_update = 0
 
@@ -35,27 +34,18 @@ func next():
 	var hour = dt.hour
 	
 	
-	if mode == 0:
-		if dt.hour < 5:
-			period = Period.NIGHT
-		elif dt.hour < 7:
-			period = Period.DAWN
-		elif dt.hour < 18:
-			period = Period.DAY
-		elif dt.hour < 20:
-			period = Period.DUSK
-		else:
-			period = Period.NIGHT
-	elif mode == 1:
+	if dt.hour < 5:
+		period = Period.NIGHT
+	elif dt.hour < 7:
 		period = Period.DAWN
-	elif mode == 2:
+	elif dt.hour < 18:
 		period = Period.DAY
-	elif mode == 3:
+	elif dt.hour < 20:
 		period = Period.DUSK
 	else:
 		period = Period.NIGHT
 		
-	var cafe_open = dt.hour >= 9 and dt.hour < 19
+	var cafe_open = dt.hour >= 8 and dt.hour < 19
 	
 	emit_signal("update", hour, period, cafe_open)
 	
@@ -63,10 +53,6 @@ func _process(_delta):
 	var now = OS.get_unix_time()
 	if now > next_update:
 		next()
-
-func set_mode(m):
-	self.mode = m
-	next()
 	
 func set_tz(t):
 	self.tz = t

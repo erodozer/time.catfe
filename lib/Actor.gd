@@ -30,19 +30,21 @@ func prioritize_action():
 
 func pick_action(period):
 	# only allow picking actions for the current time period
-	var actions = []
+	var choices = []
 	for b in behaviors:
-		if b.active_time & period > 0:
-			actions.append(b)
+		if actions > 0 and not b.inside:
+			continue
+		
+		var slot = Slots.locations[b.slot]
+		if b.active_time & period > 0 \
+		and not b.exclusive \
+		and slot.balance + b.weight <= slot.capacity:
+			choices.append(b)
 	
-	if len(actions) == 0:
+	if len(choices) == 0:
 		return false
 	
-	var a = godash.rand_choice(actions) as Behavior
-	
-	var slot = Slots.locations[a.slot]
-	if slot.balance + a.weight > slot.capacity:
-		return false
+	var a = godash.rand_choice(choices) as Behavior
 		
 	return a
 
@@ -63,6 +65,7 @@ func set_action(action: Behavior, time):
 			
 	container.global_position = action.node.global_position
 	container.scale = action.node.scale
+	container.z_index = action.node.z_index
 	sprite.animation = action.animation
 	
 	var slot = Slots.locations[action.slot]
@@ -129,20 +132,8 @@ func _on_update(time, period, cafe_open):
 	var a = prioritize_action()
 	var attempt = 0
 	while not a and (attempt < 3 or current == null):
-		a = pick_action(period)
-		if a:
-			# do not allow exiting the shop early
-			if actions > 0 and not a.inside:
-				a = null
-				continue
-				
-			# non exclusive actions can only be used
-			# when a location has other actors in it
-			if a.exclusive:
-				a = null
-				continue
-			
 		attempt += 1
+		a = pick_action(period)
 		
 	if a:
 		set_action(a, time)

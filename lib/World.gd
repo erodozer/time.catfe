@@ -19,7 +19,7 @@ var locations = {
 		"balance": 0,
 	},
 	"kitchen": {
-		"capacity": 1,
+		"capacity": 2,
 		"balance": 0,
 	},
 	"outside": {

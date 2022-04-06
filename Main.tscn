@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scene/counter.png" type="Texture" id=1]
 [ext_resource path="res://scene/table.png" type="Texture" id=2]
@@ -21,6 +21,10 @@
 [ext_resource path="res://scene/night.png" type="Texture" id=19]
 [ext_resource path="res://scene/dusk.png" type="Texture" id=20]
 [ext_resource path="res://scene/dawn.png" type="Texture" id=21]
+[ext_resource path="res://scene/food/boba.png" type="Texture" id=22]
+[ext_resource path="res://scene/food/bread.png" type="Texture" id=23]
+[ext_resource path="res://scene/upchair_right.png" type="Texture" id=24]
+[ext_resource path="res://scene/upchair_left.png" type="Texture" id=25]
 [ext_resource path="res://scene/catbed_01.png" type="Texture" id=40]
 [ext_resource path="res://Main.gd" type="Script" id=45]
 [ext_resource path="res://scene/companions/chie/Chie.tscn" type="PackedScene" id=51]
@@ -208,12 +212,6 @@ max_value = 12.0
 align = 2
 suffix = "GMT"
 
-[node name="TimeMode" type="OptionButton" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-margin_top = 28.0
-margin_right = 100.0
-margin_bottom = 46.0
-text = "Time"
-
 [node name="NextAction" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer"]
 margin_top = 50.0
 margin_right = 100.0
@@ -300,23 +298,6 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 14 )
 offset = Vector2( 0, -50 )
 
-[node name="Plant5" type="Sprite" parent="Cafe/Objects"]
-position = Vector2( -80, 75 )
-scale = Vector2( 0.524057, 0.524057 )
-texture = ExtResource( 11 )
-offset = Vector2( 0, -16 )
-
-[node name="Plant" type="Sprite" parent="Cafe/Objects"]
-position = Vector2( 97, 67 )
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-
-[node name="Plant2" type="Sprite" parent="Cafe/Objects"]
-position = Vector2( -98, 63 )
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
-offset = Vector2( 0, -23 )
-
 [node name="Plant3" type="Sprite" parent="Cafe/Objects"]
 position = Vector2( -54, 35 )
 scale = Vector2( 0.466667, 0.466667 )
@@ -367,6 +348,16 @@ texture = ExtResource( 10 )
 script = ExtResource( 16 )
 cafe_open = 1
 
+[node name="Boba" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["table_2_boba"]]
+visible = false
+position = Vector2( 4, -35 )
+texture = ExtResource( 22 )
+
+[node name="Bread" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["table_2_bread"]]
+visible = false
+position = Vector2( 6, -32 )
+texture = ExtResource( 23 )
+
 [node name="TableSet3" type="Node2D" parent="Cafe/Objects"]
 position = Vector2( -57, 66 )
 
@@ -393,16 +384,14 @@ scale = Vector2( 0.9, 0.9 )
 
 [node name="Chair6" type="Sprite" parent="Cafe/Objects/TableSet4"]
 position = Vector2( 10, -15 )
-texture = ExtResource( 12 )
-flip_v = true
+texture = ExtResource( 24 )
 
 [node name="Table3" type="Sprite" parent="Cafe/Objects/TableSet4"]
 texture = ExtResource( 2 )
 
 [node name="Chair5" type="Sprite" parent="Cafe/Objects/TableSet4"]
 position = Vector2( -15, -15 )
-texture = ExtResource( 10 )
-flip_v = true
+texture = ExtResource( 25 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet4"]
 script = ExtResource( 16 )
@@ -411,19 +400,18 @@ cafe_open = 2
 [node name="TableSet5" type="Node2D" parent="Cafe/Objects"]
 visible = false
 position = Vector2( 61, 59 )
+z_index = 1
 
 [node name="Chair4" type="Sprite" parent="Cafe/Objects/TableSet5" groups=["table_2_r_chair"]]
 position = Vector2( 8, -15 )
-texture = ExtResource( 12 )
-flip_v = true
+texture = ExtResource( 24 )
 
 [node name="Table2" type="Sprite" parent="Cafe/Objects/TableSet5"]
 texture = ExtResource( 2 )
 
 [node name="Chair3" type="Sprite" parent="Cafe/Objects/TableSet5" groups=["table_2_l_chair"]]
 position = Vector2( -6, -15 )
-texture = ExtResource( 10 )
-flip_v = true
+texture = ExtResource( 25 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet5"]
 script = ExtResource( 16 )
@@ -432,11 +420,11 @@ cafe_open = 2
 [node name="TableSet6" type="Node2D" parent="Cafe/Objects"]
 visible = false
 position = Vector2( -57, 66 )
+z_index = 1
 
 [node name="Chair2" type="Sprite" parent="Cafe/Objects/TableSet6" groups=["table_1_r_chair"]]
 position = Vector2( 13, -25 )
-texture = ExtResource( 12 )
-flip_v = true
+texture = ExtResource( 24 )
 
 [node name="Table" type="Sprite" parent="Cafe/Objects/TableSet6"]
 position = Vector2( 0, -10 )
@@ -444,35 +432,55 @@ texture = ExtResource( 2 )
 
 [node name="Chair" type="Sprite" parent="Cafe/Objects/TableSet6" groups=["table_1_l_chair"]]
 position = Vector2( -6, -25 )
-texture = ExtResource( 10 )
-flip_v = true
+texture = ExtResource( 25 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet6"]
 script = ExtResource( 16 )
 cafe_open = 2
 
 [node name="Catbed" type="Sprite" parent="Cafe/Objects"]
-position = Vector2( -81, 34 )
+position = Vector2( -80, 33 )
 texture = ExtResource( 40 )
+offset = Vector2( 0, 4 )
 
-[node name="Lamps" type="Node2D" parent="Cafe"]
+[node name="Foreground" type="Node2D" parent="Cafe"]
 z_index = 1
 
-[node name="HangingPlant" type="Sprite" parent="Cafe/Lamps"]
+[node name="Plant5" type="Sprite" parent="Cafe/Foreground"]
+position = Vector2( -80, 75 )
+scale = Vector2( 0.524057, 0.524057 )
+z_index = 1
+texture = ExtResource( 11 )
+offset = Vector2( 0, -16 )
+
+[node name="Plant" type="Sprite" parent="Cafe/Foreground"]
+position = Vector2( 97, 67 )
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="Plant2" type="Sprite" parent="Cafe/Foreground"]
+position = Vector2( -98, 63 )
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+texture = ExtResource( 6 )
+offset = Vector2( 0, -23 )
+
+[node name="HangingPlant" type="Sprite" parent="Cafe/Foreground"]
 position = Vector2( -84, -60 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
-[node name="Sprite2" type="Sprite" parent="Cafe/Lamps"]
+[node name="Sprite2" type="Sprite" parent="Cafe/Foreground"]
 position = Vector2( -63, -58 )
 texture = ExtResource( 13 )
 
-[node name="Sprite3" type="Sprite" parent="Cafe/Lamps"]
+[node name="Sprite3" type="Sprite" parent="Cafe/Foreground"]
 visible = false
 position = Vector2( 0, -52 )
 texture = ExtResource( 13 )
 
-[node name="Sprite4" type="Sprite" parent="Cafe/Lamps"]
+[node name="Sprite4" type="Sprite" parent="Cafe/Foreground"]
 position = Vector2( 62, -58 )
 texture = ExtResource( 13 )
 

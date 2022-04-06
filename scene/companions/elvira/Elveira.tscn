@@ -1,14 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://lib/Actor.gd" type="Script" id=1]
 [ext_resource path="res://scene/companions/elvira/idle/01.png" type="Texture" id=2]
 [ext_resource path="res://lib/Behavior.gd" type="Script" id=3]
+[ext_resource path="res://scene/companions/elvira/idle/02.png" type="Texture" id=4]
+[ext_resource path="res://scene/companions/elvira/idle/03.png" type="Texture" id=5]
+[ext_resource path="res://scene/companions/elvira/sitting/01.png" type="Texture" id=6]
+[ext_resource path="res://scene/companions/elvira/chat/01.png" type="Texture" id=7]
+[ext_resource path="res://scene/companions/elvira/chat/02.png" type="Texture" id=8]
+[ext_resource path="res://scene/companions/elvira/chat/03.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Chat",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Sit",
 "speed": 5.0
 } ]
 
@@ -17,7 +33,8 @@ animations = [ {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -26 )
 frames = SubResource( 6 )
-animation = "Idle"
+animation = "Chat"
+frame = 5
 playing = true
 
 [node name="Controller" type="Node" parent="." groups=["actor"]]
@@ -35,11 +52,15 @@ position = Vector2( 75, 63 )
 [node name="Outside" type="Node2D" parent="Controller/Anchors"]
 position = Vector2( 214, -113 )
 
+[node name="Counter" type="Node2D" parent="Controller/Anchors"]
+position = Vector2( -20, 36 )
+
 [node name="Behaviors" type="Node" parent="Controller"]
 
 [node name="Chat" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 anchor = NodePath("../../Anchors/Idle")
+animation = "Chat"
 prioritize = "yuuki:chat"
 active_time = 7
 exclusive = true
@@ -49,18 +70,43 @@ script = ExtResource( 3 )
 slot = "table_2"
 weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
+animation = "Sit"
+prioritize = "yuuki:sitting"
 active_time = 7
+toggle_object = [ "table_2_r_chair" ]
 
 [node name="Eating" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 slot = "table_2"
 weight = 2.0
 anchor = NodePath("../../Anchors/Sitting")
+animation = "Sit"
+prioritize = "yuuki:sitting"
 active_time = 7
+toggle_object = [ "table_2_r_chair" ]
+toggle_on = [ "table_2_bread" ]
 
 [node name="Waiting" type="Node" parent="Controller/Behaviors"]
 script = ExtResource( 3 )
 slot = "outside"
+weight = 0.0
 anchor = NodePath("../../Anchors/Outside")
 active_time = 15
 inside = false
+
+[node name="Ordering" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 3 )
+slot = "kitchen"
+anchor = NodePath("../../Anchors/Counter")
+active_time = 7
+
+[node name="Drinking" type="Node" parent="Controller/Behaviors"]
+script = ExtResource( 3 )
+slot = "table_2"
+weight = 2.0
+anchor = NodePath("../../Anchors/Sitting")
+animation = "Sit"
+prioritize = "yuuki:sitting"
+active_time = 7
+toggle_object = [ "table_2_r_chair" ]
+toggle_on = [ "table_2_tea" ]

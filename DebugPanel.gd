@@ -8,15 +8,6 @@ func _ready():
 	tz.value = Clock.tz
 	tz.connect("value_changed", Clock, "set_tz")
 
-	var modes = get_node("VBoxContainer/TimeMode")
-	modes.add_item("Auto")
-	modes.add_item("Dawn")
-	modes.add_item("Day")
-	modes.add_item("Dusk")
-	modes.add_item("Night")
-	modes.select(0)
-	modes.connect("item_selected", Clock, "set_mode")
-	
 	get_node("VBoxContainer/NextAction").connect("pressed", Clock, "next")
 	get_node("VBoxContainer/EjectAction").connect("pressed", self, "eject_guests")
 

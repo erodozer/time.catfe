@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/ui/clock/Clock.gd" type="Script" id=1]
+[ext_resource path="res://scene/ui/littleBlackPixels.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.0901961, 0.12549, 0.219608, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Clock" type="Label"]
+anchor_right = 1.0
+margin_left = -1.0
+margin_top = 5.0
+margin_right = -7.0
+margin_bottom = 29.0
+mouse_filter = 0
+custom_colors/font_color = Color( 0.921569, 0.929412, 0.913725, 1 )
+custom_colors/font_color_shadow = Color( 0.0901961, 0.12549, 0.219608, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "10:30AM"
+align = 2
+script = ExtResource( 1 )
+
+[connection signal="gui_input" from="." to="." method="_on_Label_gui_input"]

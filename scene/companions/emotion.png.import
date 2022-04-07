@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dither.png-641b66fc3baa6f004782abaa50b5974b.stex"
+path="res://.import/emotion.png-1996e21359f2096643afa408d724a854.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot-ssm/transitions/dither.png"
-dest_files=[ "res://.import/dither.png-641b66fc3baa6f004782abaa50b5974b.stex" ]
+source_file="res://scene/companions/emotion.png"
+dest_files=[ "res://.import/emotion.png-1996e21359f2096643afa408d724a854.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

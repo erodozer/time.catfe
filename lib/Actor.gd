@@ -6,12 +6,13 @@ const Behavior = preload("res://lib/Behavior.gd")
 const SHOP_STAY = 4 # stay for one hour
 const SHOP_REVISIT = 24 # appear only once per 6 hr
 
-export var guest = false
+export(bool) var guest = false
 
 onready var behaviors = get_node("Behaviors").get_children()
 onready var anchors = get_node("Anchors")
 onready var container = get_parent()
 onready var sprite = get_node("../AnimatedSprite")
+onready var interact = get_node("../Interact")
 
 var current = null
 var actions = 0
@@ -88,6 +89,9 @@ func set_action(action: Behavior, time):
 	
 	add_to_group("%s:%s" % [container.name.to_lower(), action.name.to_lower()])
 	# print("actor groups: %s" % PoolStringArray(get_groups()).join(", "))
+	
+	if interact:
+		interact.mouse_filter = Control.MOUSE_FILTER_IGNORE if not action.interact else Control.MOUSE_FILTER_STOP
 		
 func eject_from_shop():
 		
@@ -137,3 +141,10 @@ func _on_update(time, period, cafe_open):
 		
 	if a:
 		set_action(a, time)
+
+func _on_interact():
+	get_node("../AnimationPlayer").play("Emote")
+	
+	var interact_key = "%s:interacted" % [container.name.to_lower()]
+	GameState.data[interact_key] = GameState.data.get(interact_key, 0) + 1
+	

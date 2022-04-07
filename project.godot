@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 Clock="*res://lib/Events.gd"
 Slots="*res://lib/World.gd"
+GameState="*res://lib/GameState.gd"
 
 [display]
 

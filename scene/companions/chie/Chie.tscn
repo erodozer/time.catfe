@@ -2,7 +2,7 @@
 
 [ext_resource path="res://lib/Behavior.gd" type="Script" id=1]
 [ext_resource path="res://scene/companions/chie/idle/01.png" type="Texture" id=2]
-[ext_resource path="res://lib/Actor.gd" type="Script" id=3]
+[ext_resource path="res://scene/Actor.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -17,44 +17,34 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Chie" type="Node2D"]
+[node name="Chie" instance=ExtResource( 3 )]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -26 )
+[node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 7 )
-animation = "Sitting"
-playing = true
+animation = "Idle"
 
-[node name="Controller" type="Node" parent="." groups=["actor"]]
-script = ExtResource( 3 )
-guest = true
-
-[node name="Anchors" type="Node" parent="Controller"]
-
-[node name="Sitting" type="Node2D" parent="Controller/Anchors"]
+[node name="Sitting" type="Node2D" parent="Controller/Anchors" index="0"]
 position = Vector2( -72, 67 )
 
-[node name="Outside" type="Node2D" parent="Controller/Anchors"]
+[node name="Outside" type="Node2D" parent="Controller/Anchors" index="1"]
 position = Vector2( 302, -127 )
 
-[node name="Idle" type="Node2D" parent="Controller/Anchors"]
+[node name="Idle" type="Node2D" parent="Controller/Anchors" index="2"]
 position = Vector2( 16, 59 )
 scale = Vector2( -1, 1 )
 
-[node name="Counter" type="Node2D" parent="Controller/Anchors"]
+[node name="Counter" type="Node2D" parent="Controller/Anchors" index="3"]
 position = Vector2( -20, 36 )
 scale = Vector2( -1, 1 )
 
-[node name="Behaviors" type="Node" parent="Controller"]
-
-[node name="Chat" type="Node" parent="Controller/Behaviors"]
+[node name="Chat" type="Node" parent="Controller/Behaviors" index="0"]
 script = ExtResource( 1 )
 anchor = NodePath("../../Anchors/Idle")
 prioritize = "yuuki:chat"
 active_time = 6
 exclusive = true
 
-[node name="Sitting" type="Node" parent="Controller/Behaviors"]
+[node name="Sitting" type="Node" parent="Controller/Behaviors" index="1"]
 script = ExtResource( 1 )
 slot = "table_1"
 weight = 2.0
@@ -64,7 +54,7 @@ prioritize = "yuuki:sitting2"
 active_time = 6
 toggle_object = [ "table_1_l_chair" ]
 
-[node name="Eating" type="Node" parent="Controller/Behaviors"]
+[node name="Eating" type="Node" parent="Controller/Behaviors" index="2"]
 script = ExtResource( 1 )
 slot = "table_1"
 weight = 2.0
@@ -74,7 +64,7 @@ prioritize = "yuuki:sitting2"
 active_time = 6
 toggle_object = [ "table_1_l_chair" ]
 
-[node name="Waiting" type="Node" parent="Controller/Behaviors"]
+[node name="Waiting" type="Node" parent="Controller/Behaviors" index="3"]
 script = ExtResource( 1 )
 slot = "outside"
 weight = 0.0
@@ -82,7 +72,7 @@ anchor = NodePath("../../Anchors/Outside")
 active_time = 15
 inside = false
 
-[node name="Ordering" type="Node" parent="Controller/Behaviors"]
+[node name="Ordering" type="Node" parent="Controller/Behaviors" index="4"]
 script = ExtResource( 1 )
 slot = "kitchen"
 anchor = NodePath("../../Anchors/Counter")

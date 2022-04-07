@@ -10,6 +10,9 @@ export(bool) var inside = true
 export(bool) var exclusive = false # can only occur on paired prioritization
 export(Array, String) var toggle_object = []
 export(Array, String) var toggle_on = []
+
+export(bool) var interact = false
+export(Array, String) var toggle_interact = []
 	
 var node setget ,_get_node
 

@@ -10,11 +10,12 @@ font_data = ExtResource( 2 )
 
 [node name="Clock" type="Label"]
 anchor_right = 1.0
-margin_left = -1.0
+margin_left = 120.0
 margin_top = 5.0
 margin_right = -7.0
 margin_bottom = 29.0
 mouse_filter = 0
+mouse_default_cursor_shape = 2
 custom_colors/font_color = Color( 0.921569, 0.929412, 0.913725, 1 )
 custom_colors/font_color_shadow = Color( 0.0901961, 0.12549, 0.219608, 1 )
 custom_constants/shadow_offset_x = 1

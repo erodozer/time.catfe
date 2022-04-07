@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/02.png-f17b45feb9fd56e0aa7d4df251acd7e1.stex"
+path="res://.import/icon.png-b8e6b2ca5baaea6ad9e26b0c18a475e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/cats/grey/sit/02.png"
-dest_files=[ "res://.import/02.png-f17b45feb9fd56e0aa7d4df251acd7e1.stex" ]
+source_file="res://scene/actors/black/icon.png"
+dest_files=[ "res://.import/icon.png-b8e6b2ca5baaea6ad9e26b0c18a475e1.stex" ]
 
 [params]
 

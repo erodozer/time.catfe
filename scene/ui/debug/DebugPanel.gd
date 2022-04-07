@@ -4,12 +4,12 @@ extends PanelContainer
 func _ready():
 	visible = false 
 
-	var tz = get_node("VBoxContainer/TimeZone")
+	var tz = get_node("MarginContainer/VBoxContainer/TimeZone")
 	tz.value = Clock.tz
 	tz.connect("value_changed", Clock, "set_tz")
 
-	get_node("VBoxContainer/NextAction").connect("pressed", Clock, "next")
-	get_node("VBoxContainer/EjectAction").connect("pressed", self, "eject_guests")
+	get_node("MarginContainer/VBoxContainer/NextAction").connect("pressed", Clock, "next")
+	get_node("MarginContainer/VBoxContainer/EjectAction").connect("pressed", self, "eject_guests")
 
 func _input(event):
 	if event.is_action_pressed("debug"):

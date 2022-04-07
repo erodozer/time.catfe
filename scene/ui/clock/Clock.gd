@@ -10,10 +10,6 @@ const WkDay = [
 	"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
 ]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 func _process(_delta):
 	var dt = OS.get_datetime_from_unix_time(OS.get_unix_time() + (3600 * Clock.tz))
 	

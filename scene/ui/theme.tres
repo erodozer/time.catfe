@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://scene/ui/littleBlackPixels.ttf" type="DynamicFontData" id=1]
 
@@ -30,6 +30,9 @@ corner_radius_bottom_left = 2
 expand_margin_left = 2.0
 expand_margin_right = 2.0
 
+[sub_resource type="StyleBoxLine" id=15]
+color = Color( 0.301961, 0.168627, 0.196078, 1 )
+
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.905882, 0.835294, 0.701961, 1 )
 border_width_left = 2
@@ -59,16 +62,15 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 
 [sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.905882, 0.835294, 0.701961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.141176, 0.0823529, 0.152941, 1 )
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
+bg_color = Color( 0.843137, 0.709804, 0.580392, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 4
+border_color = Color( 0.301961, 0.168627, 0.196078, 1 )
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_detail = 1
 
 [sub_resource type="DynamicFont" id=9]
 font_data = ExtResource( 1 )
@@ -106,13 +108,15 @@ CheckButton/styles/hover = null
 CheckButton/styles/hover_pressed = null
 CheckButton/styles/normal = null
 CheckButton/styles/pressed = null
-Label/colors/font_color = Color( 0.921569, 0.929412, 0.913725, 1 )
-Label/colors/font_color_shadow = Color( 0.0901961, 0.12549, 0.219608, 1 )
+HSeparator/constants/separation = 0
+HSeparator/styles/separator = SubResource( 15 )
+Label/colors/font_color = Color( 0.254902, 0.113725, 0.192157, 1 )
+Label/colors/font_color_shadow = Color( 0.752941, 0.580392, 0.45098, 1 )
 Label/colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 Label/constants/line_spacing = 0
 Label/constants/shadow_as_outline = 0
-Label/constants/shadow_offset_x = 2
-Label/constants/shadow_offset_y = 2
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 0
 Label/fonts/font = null
 Label/styles/normal = null
 OptionButton/colors/font_color = Color( 0.458824, 0.141176, 0.219608, 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/02.png-ec214db13945e6e2191b84a7cd449462.stex"
+path="res://.import/03.png-32073387617ee7a91d7cfbbca2331092.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/actors/elvira/idle/02.png"
-dest_files=[ "res://.import/02.png-ec214db13945e6e2191b84a7cd449462.stex" ]
+source_file="res://scene/actors/grey/03.png"
+dest_files=[ "res://.import/03.png-32073387617ee7a91d7cfbbca2331092.stex" ]
 
 [params]
 

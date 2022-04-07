@@ -12,24 +12,24 @@
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Play",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Sit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 2.0
 }, {
+"frames": [ ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Play",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Sleep",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Sit",
 "speed": 5.0
 } ]
 
@@ -39,6 +39,7 @@ animations = [ {
 position = Vector2( 5, -18 )
 frames = SubResource( 4 )
 animation = "Idle"
+frame = 1
 
 [node name="Controller" parent="." index="4"]
 guest = false
@@ -52,14 +53,12 @@ position = Vector2( -17, 60 )
 [node name="Catbed" type="Node2D" parent="Controller/Anchors" index="2"]
 position = Vector2( -80, 34 )
 
-[node name="Sleeping" type="Node2D" parent="Controller/Anchors" index="3"]
-position = Vector2( 10, 64 )
-
 [node name="Idle" type="Node" parent="Controller/Behaviors" index="0"]
 script = ExtResource( 3 )
+weight = 0.0
 anchor = NodePath("../../Anchors/Catbed")
 animation = "Sit"
-active_time = 15
+active_time = 7
 
 [node name="Playing" type="Node" parent="Controller/Behaviors" index="1"]
 script = ExtResource( 3 )
@@ -76,13 +75,6 @@ active_time = 7
 
 [node name="Sleeping" type="Node" parent="Controller/Behaviors" index="3"]
 script = ExtResource( 3 )
-slot = "catbed"
 anchor = NodePath("../../Anchors/Catbed")
 animation = "Sleep"
 active_time = 15
-
-[node name="Sleeping2" type="Node" parent="Controller/Behaviors" index="4"]
-script = ExtResource( 3 )
-anchor = NodePath("../../Anchors/Sleeping")
-animation = "Sleep"
-active_time = 8

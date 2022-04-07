@@ -14,11 +14,6 @@
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 3.0
-}, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "Chat",
@@ -28,6 +23,11 @@ animations = [ {
 "loop": true,
 "name": "Sitting",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 3.0
 } ]
 
 [node name="Maia" instance=ExtResource( 1 )]
@@ -35,8 +35,7 @@ animations = [ {
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 5 )
 animation = "Idle"
-frame = 3
-playing = false
+frame = 2
 
 [node name="Sitting" type="Node2D" parent="Controller/Anchors" index="0"]
 position = Vector2( 75, 63 )
@@ -58,7 +57,7 @@ prioritize = "yuuki:chat"
 active_time = 7
 exclusive = true
 
-[node name="Sitting" type="Node" parent="Controller/Behaviors" index="1"]
+[node name="Eating" type="Node" parent="Controller/Behaviors" index="1"]
 script = ExtResource( 5 )
 slot = "table_2"
 weight = 2.0
@@ -67,19 +66,10 @@ animation = "Sitting"
 prioritize = "yuuki:sitting"
 active_time = 7
 toggle_object = [ "table_2_r_chair" ]
+interact = true
+toggle_interact = [ "table_2_bread" ]
 
-[node name="Eating" type="Node" parent="Controller/Behaviors" index="2"]
-script = ExtResource( 5 )
-slot = "table_2"
-weight = 2.0
-anchor = NodePath("../../Anchors/Sitting")
-animation = "Sitting"
-prioritize = "yuuki:sitting"
-active_time = 7
-toggle_object = [ "table_2_r_chair" ]
-toggle_on = [ "table_2_bread" ]
-
-[node name="Waiting" type="Node" parent="Controller/Behaviors" index="3"]
+[node name="Waiting" type="Node" parent="Controller/Behaviors" index="2"]
 script = ExtResource( 5 )
 slot = "outside"
 weight = 0.0
@@ -87,7 +77,7 @@ anchor = NodePath("../../Anchors/Outside")
 active_time = 15
 inside = false
 
-[node name="Drinking" type="Node" parent="Controller/Behaviors" index="4"]
+[node name="Drinking" type="Node" parent="Controller/Behaviors" index="3"]
 script = ExtResource( 5 )
 slot = "table_2"
 weight = 2.0
@@ -96,9 +86,10 @@ animation = "Sitting"
 prioritize = "yuuki:sitting"
 active_time = 7
 toggle_object = [ "table_2_r_chair" ]
-toggle_on = [ "table_2_boba" ]
+interact = true
+toggle_interact = [ "table_2_boba" ]
 
-[node name="Ordering" type="Node" parent="Controller/Behaviors" index="5"]
+[node name="Ordering" type="Node" parent="Controller/Behaviors" index="4"]
 script = ExtResource( 5 )
 slot = "kitchen"
 anchor = NodePath("../../Anchors/Counter")

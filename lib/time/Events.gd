@@ -9,19 +9,23 @@ enum Period {
 
 const godash = preload("res://addons/godash/godash.gd")
 
-export(int) var update_rate = 900
+export(int) var update_rate = 60 * 5
+export(int) var save_freq = 60
 var tz = OS.get_time_zone_info().bias / 60
 
 var next_update = 0
+var next_save = OS.get_unix_time() + save_freq
 
-signal update(hour, period, cafe_open)
+onready var time = OS.get_ticks_msec()
+
+signal update(hour, period, cafe_open)	
 
 func next():
 	Slots.reset()
 	
 	var dt = OS.get_datetime(true)
 	
-	dt.minute = dt.minute - (dt.minute % 15)
+	dt.minute = dt.minute - (dt.minute % (update_rate / 60))
 	dt.second = 0
 	
 	var now = OS.get_unix_time_from_datetime(dt)
@@ -53,6 +57,14 @@ func _process(_delta):
 	var now = OS.get_unix_time()
 	if now > next_update:
 		next()
+		
+	if now > next_save:
+		var time_played = GameState.ref("played", 0)
+		var x = OS.get_ticks_msec()
+		time_played.value += x - time
+		time = x
+		next_save = now + save_freq
+		GameState.save_game()
 	
 func set_tz(t):
 	self.tz = t

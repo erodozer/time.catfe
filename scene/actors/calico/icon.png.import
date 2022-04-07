@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/02.png-f5e8a4b77f36478a454232b84748d054.stex"
+path="res://.import/icon.png-933ad42238135f0c7b4b7c3395237e80.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/actors/elvira/chat/02.png"
-dest_files=[ "res://.import/02.png-f5e8a4b77f36478a454232b84748d054.stex" ]
+source_file="res://scene/actors/calico/icon.png"
+dest_files=[ "res://.import/icon.png-933ad42238135f0c7b4b7c3395237e80.stex" ]
 
 [params]
 

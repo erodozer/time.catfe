@@ -1,7 +1,7 @@
 extends "res://lib/time/TimeTrigger.gd"
 
 const godash = preload("res://addons/godash/godash.gd")
-const Behavior = preload("./Behavior.gd")
+const Behavior = preload("res://lib/actor/Behavior.gd")
 
 const SHOP_STAY = 4 # stay for one hour
 const SHOP_REVISIT = 24 # appear only once per 6 hr
@@ -17,6 +17,7 @@ onready var interact = get_node("../Interact")
 var current = null
 var actions = 0
 var wait = 0
+var interacted = false
 
 func prioritize_action():
 	for b in behaviors:
@@ -90,8 +91,10 @@ func set_action(action: Behavior, time):
 	add_to_group("%s:%s" % [container.name.to_lower(), action.name.to_lower()])
 	# print("actor groups: %s" % PoolStringArray(get_groups()).join(", "))
 	
+	var interacted = false
+	
 	if interact:
-		interact.mouse_filter = Control.MOUSE_FILTER_IGNORE if not action.interact else Control.MOUSE_FILTER_STOP
+		interact.mouse_filter = Control.MOUSE_FILTER_IGNORE if not action.can_interact() else Control.MOUSE_FILTER_STOP
 		
 func eject_from_shop():
 		
@@ -111,6 +114,8 @@ func eject_from_shop():
 func _on_update(time, period, cafe_open):
 	if not container.visible:
 		return
+	
+	reset_interaction()
 	
 	if guest:
 		# guests can not be in the shop after it closes
@@ -142,9 +147,38 @@ func _on_update(time, period, cafe_open):
 	if a:
 		set_action(a, time)
 
+func reset_interaction():
+	interacted = false
+	
+	if not current:
+		return
+	
+	for obj in current.toggle_interact:
+		var toggled = get_tree().get_nodes_in_group(obj)
+		for t in toggled:
+			t.visible = false
+			
+	if interact:
+		interact.mouse_filter = Control.MOUSE_FILTER_IGNORE if not current.can_interact() else Control.MOUSE_FILTER_STOP
+			
 func _on_interact():
+	if interacted:
+		return
+		
+	if not current.interact:
+		return
+		
+	interacted = true
+	
 	get_node("../AnimationPlayer").play("Emote")
 	
-	var interact_key = "%s:interacted" % [container.name.to_lower()]
-	GameState.data[interact_key] = GameState.data.get(interact_key, 0) + 1
+	var interact_key = "%s:interact" % [container.name.to_lower()]
+	var ref = GameState.ref(interact_key, 0)
+	ref.value = ref.value + 1
 	
+	for obj in current.toggle_interact:
+		var toggled = get_tree().get_nodes_in_group(obj)
+		for t in toggled:
+			t.visible = true
+			
+	interact.mouse_filter = Control.MOUSE_FILTER_IGNORE

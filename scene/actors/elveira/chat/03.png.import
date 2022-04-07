@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/03.png-1ec5615a1f778e5134baa0d62de89041.stex"
+path="res://.import/03.png-6a994c6dfc7120e1db8e37da8db0ed82.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/actors/elvira/chat/03.png"
-dest_files=[ "res://.import/03.png-1ec5615a1f778e5134baa0d62de89041.stex" ]
+source_file="res://scene/actors/elveira/chat/03.png"
+dest_files=[ "res://.import/03.png-6a994c6dfc7120e1db8e37da8db0ed82.stex" ]
 
 [params]
 

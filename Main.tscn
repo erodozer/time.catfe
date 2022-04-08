@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scene/counter.png" type="Texture" id=1]
 [ext_resource path="res://scene/table.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://scene/ui/journal/Journal.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scene/food/tea.png" type="Texture" id=27]
 [ext_resource path="res://scene/actors/calico/CalicoCat.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scene/actors/grey/GreyCat.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scene/catbed_01.png" type="Texture" id=40]
 [ext_resource path="res://Main.gd" type="Script" id=45]
 [ext_resource path="res://scene/actors/chie/Chie.tscn" type="PackedScene" id=51]
@@ -38,9 +39,9 @@ script = ExtResource( 45 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Journal" parent="CanvasLayer" instance=ExtResource( 26 )]
-
 [node name="Clock" parent="CanvasLayer" instance=ExtResource( 8 )]
+
+[node name="Journal" parent="CanvasLayer" instance=ExtResource( 26 )]
 
 [node name="Debug" parent="CanvasLayer" instance=ExtResource( 7 )]
 
@@ -97,6 +98,9 @@ texture = ExtResource( 3 )
 
 [node name="BlackCat" parent="Cafe/Objects" instance=ExtResource( 18 )]
 
+[node name="GreyCat" parent="Cafe/Objects" instance=ExtResource( 29 )]
+visible = false
+
 [node name="CalicoCat" parent="Cafe/Objects" instance=ExtResource( 28 )]
 
 [node name="Maia" parent="Cafe/Objects" instance=ExtResource( 15 )]
@@ -144,7 +148,7 @@ texture = ExtResource( 10 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet"]
 script = ExtResource( 16 )
-cafe_open = 1
+cafe_state = 1
 
 [node name="TableSet2" type="Node2D" parent="Cafe/Objects"]
 position = Vector2( 59, 69 )
@@ -164,7 +168,7 @@ texture = ExtResource( 10 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet2"]
 script = ExtResource( 16 )
-cafe_open = 1
+cafe_state = 1
 
 [node name="Boba" type="Sprite" parent="Cafe/Objects/TableSet2" groups=["table_2_boba"]]
 visible = false
@@ -198,7 +202,7 @@ texture = ExtResource( 10 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet3"]
 script = ExtResource( 16 )
-cafe_open = 1
+cafe_state = 1
 
 [node name="Boba" type="Sprite" parent="Cafe/Objects/TableSet3" groups=["table_1_boba"]]
 visible = false
@@ -233,7 +237,7 @@ texture = ExtResource( 25 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet4"]
 script = ExtResource( 16 )
-cafe_open = 2
+cafe_state = 2
 
 [node name="TableSet5" type="Node2D" parent="Cafe/Objects"]
 visible = false
@@ -253,7 +257,7 @@ texture = ExtResource( 25 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet5"]
 script = ExtResource( 16 )
-cafe_open = 2
+cafe_state = 2
 
 [node name="TableSet6" type="Node2D" parent="Cafe/Objects"]
 visible = false
@@ -274,7 +278,7 @@ texture = ExtResource( 25 )
 
 [node name="NightToggle" type="Node" parent="Cafe/Objects/TableSet6"]
 script = ExtResource( 16 )
-cafe_open = 2
+cafe_state = 2
 
 [node name="Catbed" type="Sprite" parent="Cafe/Objects"]
 position = Vector2( -80, 33 )

@@ -1,22 +1,17 @@
 extends "./TimeTrigger.gd"
 
-enum CafeOpen {
-	ALWAYS,
-	OPEN,
-	CLOSED
-}
-
 export(Clock.Period, FLAGS) var active_time = Clock.Period.DAY
-export(CafeOpen) var cafe_open = CafeOpen.ALWAYS
+export(int, FLAGS, "open", "closed") var cafe_state = 3
 
 onready var container = get_parent()
 
-func _on_update(time, period, open):
-	if open and cafe_open == CafeOpen.ALWAYS:
+func _on_update(time, period, flags):
+	var cafe_open = flags[0]
+	
+	var f = 1 if cafe_open else 2
+	
+	if cafe_state == 3:
 		container.visible = period & active_time > 0
-	elif open and cafe_open == CafeOpen.OPEN:
-		container.visible = true
-	elif not open and cafe_open == CafeOpen.CLOSED:
-		container.visible = true
 	else:
-		container.visible = false
+		container.visible = cafe_state & f > 0
+	

@@ -3,10 +3,10 @@ extends "res://lib/time/TimeTrigger.gd"
 const godash = preload("res://addons/godash/godash.gd")
 const Behavior = preload("res://lib/actor/Behavior.gd")
 
-const SHOP_STAY = 4 # stay for one hour
-const SHOP_REVISIT = 24 # appear only once per 6 hr
+const SHOP_STAY = 12 # stay for one hour
+const SHOP_REVISIT = 16 # guests can appear only once per 1.5-3hr
 
-export(bool) var guest = false
+export(String, "host", "guest", "cat") var actor_type = "host"
 
 onready var behaviors = get_node("Behaviors").get_children()
 onready var anchors = get_node("Anchors")
@@ -30,14 +30,21 @@ func prioritize_action():
 			return b
 	return null
 
-func pick_action(period):
+func pick_action(period, cafe_open, awake):
+	var f = 1 if cafe_open else 2
+	
 	# only allow picking actions for the current time period
 	var choices = []
 	for b in behaviors:
 		if actions > 0 and not b.inside:
 			continue
+			
+		if actor_type == "host":
+			if b.awake != awake or b.cafe_open & f == 0:
+				continue
 		
 		var slot = Slots.locations[b.slot]
+		
 		if b.active_time & period > 0 \
 		and not b.exclusive \
 		and slot.balance + b.weight <= slot.capacity:
@@ -83,7 +90,7 @@ func set_action(action: Behavior, time):
 			t.visible = true
 	
 	if not prev or not prev.inside:
-		if action.inside:
+		if action.inside and actor_type == "guest":
 			Slots.bodies += 1
 			print("Actor entering: %s " % [container.name])
 			actions = SHOP_STAY
@@ -97,10 +104,12 @@ func set_action(action: Behavior, time):
 		interact.mouse_filter = Control.MOUSE_FILTER_IGNORE if not action.can_interact() else Control.MOUSE_FILTER_STOP
 		
 func eject_from_shop():
+	if actor_type != "guest":
+		return
 		
 	# remove body
 	if current and current.inside:
-		wait = randi() % SHOP_REVISIT
+		wait = SHOP_REVISIT + (randi() % SHOP_REVISIT)
 		print("Actor ejected: %s " % [container.name])
 		Slots.bodies -= 1
 		
@@ -111,13 +120,16 @@ func eject_from_shop():
 			set_action(b, 0)
 			return
 		
-func _on_update(time, period, cafe_open):
+func _on_update(time, period, cafe_flags):
 	if not container.visible:
 		return
 	
+	var cafe_open = cafe_flags[0]
+	var awake = cafe_flags[1]
+	
 	reset_interaction()
 	
-	if guest:
+	if actor_type == "guest":
 		# guests can not be in the shop after it closes
 		if not cafe_open:
 			eject_from_shop()
@@ -142,7 +154,7 @@ func _on_update(time, period, cafe_open):
 	var attempt = 0
 	while not a and (attempt < 3 or current == null):
 		attempt += 1
-		a = pick_action(period)
+		a = pick_action(period, cafe_open, awake)
 		
 	if a:
 		set_action(a, time)
@@ -182,3 +194,7 @@ func _on_interact():
 			t.visible = true
 			
 	interact.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	# auto save each interaction
+	GameState.save_game()
+	

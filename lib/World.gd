@@ -3,7 +3,7 @@ extends Node
 var guest = null
 
 var bodies = 0
-var capacity = 4
+var capacity = 2 # allow up to 2 guests at a time
 
 var locations = {
 	"center": {
@@ -19,7 +19,7 @@ var locations = {
 		"balance": 0,
 	},
 	"kitchen": {
-		"capacity": 2,
+		"capacity": 1,
 		"balance": 0,
 	},
 	"outside": {

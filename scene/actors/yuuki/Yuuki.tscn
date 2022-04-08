@@ -82,10 +82,6 @@ animations = [ {
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 3
-
-[node name="Controller" parent="." index="4"]
-guest = false
 
 [node name="Sitting" type="Node2D" parent="Controller/Anchors" index="0"]
 position = Vector2( 33, 66 )
@@ -116,14 +112,15 @@ scale = Vector2( -1, 1 )
 script = ExtResource( 27 )
 weight = 3.0
 anchor = NodePath("../../Anchors/Idle")
-active_time = 7
+active_time = 15
 
 [node name="Sitting" type="Node" parent="Controller/Behaviors" index="1"]
 script = ExtResource( 27 )
 slot = "table_2"
 anchor = NodePath("../../Anchors/Sitting")
 animation = "Sitting"
-active_time = 7
+active_time = 15
+cafe_open = 1
 toggle_object = [ "table_2_l_chair" ]
 
 [node name="TableChat" type="Node" parent="Controller/Behaviors" index="2"]
@@ -131,7 +128,8 @@ script = ExtResource( 27 )
 slot = "table_2"
 anchor = NodePath("../../Anchors/Sitting")
 animation = "SittingChat"
-active_time = 6
+active_time = 15
+cafe_open = 1
 toggle_object = [ "table_2_l_chair" ]
 
 [node name="Chat" type="Node" parent="Controller/Behaviors" index="3"]
@@ -143,8 +141,10 @@ active_time = 6
 [node name="Counter" type="Node" parent="Controller/Behaviors" index="4"]
 script = ExtResource( 27 )
 slot = "kitchen"
+weight = 0.0
 anchor = NodePath("../../Anchors/Counter")
-active_time = 6
+active_time = 15
+cafe_open = 1
 
 [node name="Play" type="Node" parent="Controller/Behaviors" index="5"]
 script = ExtResource( 27 )
@@ -153,46 +153,57 @@ anchor = NodePath("../../Anchors/Playing")
 animation = "Play"
 active_time = 7
 
-[node name="Karaoke" type="Node" parent="Controller/Behaviors" index="6"]
+[node name="Play2" type="Node" parent="Controller/Behaviors" index="6"]
+script = ExtResource( 27 )
+weight = 2.0
+anchor = NodePath("../../Anchors/Playing")
+animation = "Play"
+active_time = 7
+
+[node name="Karaoke" type="Node" parent="Controller/Behaviors" index="7"]
 script = ExtResource( 27 )
 weight = 2.0
 anchor = NodePath("../../Anchors/Idle")
 animation = "Singing"
 active_time = 6
+cafe_open = 1
 
-[node name="Baking" type="Node" parent="Controller/Behaviors" index="7"]
+[node name="Baking" type="Node" parent="Controller/Behaviors" index="8"]
 script = ExtResource( 27 )
 slot = "kitchen"
-weight = 2.0
 anchor = NodePath("../../Anchors/Kitchen")
 animation = "Kitchen"
 active_time = 3
 
-[node name="Coffee" type="Node" parent="Controller/Behaviors" index="8"]
+[node name="Coffee" type="Node" parent="Controller/Behaviors" index="9"]
 script = ExtResource( 27 )
 slot = "kitchen"
+weight = 0.0
 anchor = NodePath("../../Anchors/Coffee")
 animation = "Kitchen"
 active_time = 7
 
-[node name="Sleeping" type="Node" parent="Controller/Behaviors" index="9"]
+[node name="Sleeping" type="Node" parent="Controller/Behaviors" index="10"]
 script = ExtResource( 27 )
 weight = 2.0
 anchor = NodePath("../../Anchors/Idle")
 animation = "Sleeping"
-active_time = 9
+active_time = 15
+awake = false
 
-[node name="Sleeping2" type="Node" parent="Controller/Behaviors" index="10"]
+[node name="Sleeping2" type="Node" parent="Controller/Behaviors" index="11"]
 script = ExtResource( 27 )
 weight = 2.0
 anchor = NodePath("../../Anchors/Idle")
 animation = "Sleeping_02"
-active_time = 9
+active_time = 15
+awake = false
 
-[node name="Sitting2" type="Node" parent="Controller/Behaviors" index="11"]
+[node name="Sitting2" type="Node" parent="Controller/Behaviors" index="12"]
 script = ExtResource( 27 )
 slot = "table_1"
 anchor = NodePath("../../Anchors/Sitting2")
 animation = "Sitting"
-active_time = 7
+active_time = 15
+cafe_open = 1
 toggle_object = [ "table_1_r_chair" ]

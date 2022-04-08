@@ -9,6 +9,11 @@ enum Period {
 
 const godash = preload("res://addons/godash/godash.gd")
 
+var open_time = 8
+var awake_time = 6
+var close_time = 19
+var sleep_time = 21
+
 export(int) var update_rate = 60 * 5
 export(int) var save_freq = 60
 var tz = OS.get_time_zone_info().bias / 60
@@ -37,7 +42,6 @@ func next():
 	var period
 	var hour = dt.hour
 	
-	
 	if dt.hour < 5:
 		period = Period.NIGHT
 	elif dt.hour < 7:
@@ -49,9 +53,10 @@ func next():
 	else:
 		period = Period.NIGHT
 		
-	var cafe_open = dt.hour >= 8 and dt.hour < 19
+	var cafe_open = dt.hour >= open_time and dt.hour < close_time
+	var awake = dt.hour >= awake_time and dt.hour < sleep_time
 	
-	emit_signal("update", hour, period, cafe_open)
+	emit_signal("update", hour, period, [cafe_open, awake])
 	
 func _process(_delta):
 	var now = OS.get_unix_time()

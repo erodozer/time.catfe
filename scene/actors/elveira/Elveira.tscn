@@ -33,7 +33,9 @@ animations = [ {
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 6 )
 animation = "Idle"
-frame = 1
+
+[node name="Controller" parent="." index="4"]
+actor_type = "guest"
 
 [node name="Idle" type="Node2D" parent="Controller/Anchors" index="0"]
 position = Vector2( 16, 59 )

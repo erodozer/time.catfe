@@ -8,6 +8,8 @@ export(NodePath) var anchor
 export(String) var animation = "Idle"
 export(String) var prioritize = ""
 export(Period, FLAGS) var active_time = Period.DAY
+export(bool) var awake = true
+export(int, FLAGS, "open", "closed") var cafe_open = 3
 export(bool) var inside = true
 export(bool) var exclusive = false # can only occur on paired prioritization
 export(Array, String) var toggle_object = []
